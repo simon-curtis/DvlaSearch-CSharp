@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace DvlaSearch_CSharp.Models
 {
-    public abstract class DigitalTachograph
+    public class DigitalTachograph
     {
         [JsonProperty("currentCardStatus")] public string CurrentCardStatus { get; set; } = "";
         [JsonProperty("validFrom")] public DateTime ValidFrom { get; set; }

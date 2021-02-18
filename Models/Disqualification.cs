@@ -3,9 +3,8 @@ using Newtonsoft.Json;
 
 namespace DvlaSearch_CSharp.Models
 {
-    public abstract class Disqualification
+    public class Disqualification : Endorsement
     {
-        [JsonProperty("category")] public string Category { get; set; } = "";
         [JsonProperty("convictionDate")] public DateTime ConvictionDate { get; set; }
         [JsonProperty("endDate")] public DateTime EndDate { get; set; }
         [JsonProperty("fine")] public float Fine { get; set; }

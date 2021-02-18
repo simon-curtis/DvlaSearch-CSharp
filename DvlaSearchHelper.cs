@@ -30,39 +30,36 @@ namespace DvlaSearch_CSharp
             {
                 (licenceNumber, "Licence Number", Validation.DriverLicenceRegexp),
                 (nationalInsuranceNumber, "National Insurance Number", Validation.NiNumberRegex),
-                (postCode, "Post Code", Validation.PostCodeRegexp),
+                (postCode, "Post Code", Validation.PostCodeRegexp)
             })
             {
                 if (string.IsNullOrEmpty(param))
                     return new Error($"Paramter '{desc}' is required");
 
-                if (!regExp.IsMatch(licenceNumber))
+                if (!regExp.IsMatch(param))
                     return new Error($"'{param}' was not a valid {desc}");
             }
 
             return Fetch<DriverLicence>("DriverLicence", new[]
             {
-                $"licenceNumber={licenceNumber}",
+                $"licenceNo={licenceNumber}",
                 $"natsInsNo={nationalInsuranceNumber}",
-                $"postcode={postCode}",
+                $"postcode={postCode}"
             }).Result;
         }
 
         private async Task<FetchResult> Fetch<T>(string service, IEnumerable<string> parameters)
         {
             var query = $"?apikey={_apiApiKey}" + string.Concat(parameters.Select(p => $"&{p}"));
-            var response = await _client.GetAsync(service + query);
+            HttpResponseMessage? response = await _client.GetAsync(service + query);
 
-            if (!response.IsSuccessStatusCode)
-            {
-                return new Error(response.ReasonPhrase ?? "Unknown Reason");
-            }
-            
+            if (!response.IsSuccessStatusCode) return new Error(response.ReasonPhrase ?? "Unknown Reason");
+
             var content = await response.Content.ReadAsStringAsync();
 
             if (content.Contains("\"error\":"))
             {
-                var error = JsonConvert.DeserializeObject<ErrorResponse>(content);
+                ErrorResponse? error = JsonConvert.DeserializeObject<ErrorResponse>(content);
                 return error!.ErrorNumber switch
                 {
                     0 => new NotFound(),
@@ -76,13 +73,13 @@ namespace DvlaSearch_CSharp
                 obj = JsonConvert.DeserializeObject<T>(content);
             }
             catch (Exception ex)
-            { 
+            {
                 return new Error(ex.Message);
             }
 
             if (obj == null)
                 return new Error("The result of the JSON parsing was null");
-            
+
             return new Success<T>(obj);
         }
     }

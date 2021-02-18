@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace DvlaSearch_CSharp.Models
 {
-    public abstract class VehicleCategory
+    public class VehicleCategory
     {
         [JsonProperty("category")] public string Category { get; set; } = "";
         [JsonProperty("endDate")] public DateTime EndDate { get; set; }

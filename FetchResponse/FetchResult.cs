@@ -1,4 +1,6 @@
 ﻿namespace DvlaSearch_CSharp.FetchResponse
 {
-    public abstract class FetchResult { };
+    public abstract class FetchResult
+    {
+    }
 }

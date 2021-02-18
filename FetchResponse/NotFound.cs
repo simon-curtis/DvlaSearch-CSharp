@@ -1,4 +1,6 @@
 ﻿namespace DvlaSearch_CSharp.FetchResponse
 {
-    public class NotFound : FetchResult { }
+    public class NotFound : FetchResult
+    {
+    }
 }

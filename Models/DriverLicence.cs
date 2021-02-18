@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace DvlaSearch_CSharp.Models
 {
-    public abstract class DriverLicence
+    public class DriverLicence
     {
         [JsonProperty("name")] public string Name { get; set; } = "";
 
@@ -26,12 +25,12 @@ namespace DvlaSearch_CSharp.Models
         [JsonProperty("penaltyPoints")] public int PenaltyPoints { get; set; }
 
         [JsonProperty("vehicleCategories")]
-        public ICollection<VehicleCategory> VehicleCategories { get; set; } = Array.Empty<VehicleCategory>();
+        public ICollection<VehicleCategory> VehicleCategories { get; set; } = new List<VehicleCategory>();
 
-        [JsonProperty("penalties")] public ICollection<Penalty> Penalties { get; set; } = Array.Empty<Penalty>();
+        [JsonProperty("penalties")] public ICollection<Penalty> Penalties { get; set; } = new List<Penalty>();
 
         [JsonProperty("disqualifications")]
-        public ICollection<Disqualification> Disqualifications { get; set; } = Array.Empty<Disqualification>();
+        public ICollection<Disqualification> Disqualifications { get; set; } = new List<Disqualification>();
 
         public DigitalTachograph? DigitalTachograph { get; set; }
     }
