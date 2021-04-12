@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace DvlaSearch_CSharp
 {
-    public class DvlaSearchHelper
+    public class DvlaSearchHelper : IDvlaSearchHelper
     {
         private readonly string _apiApiKey;
         private readonly HttpClient _client;

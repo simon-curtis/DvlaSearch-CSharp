@@ -18,7 +18,7 @@ namespace DvlaSearch_CSharp.Models
 
         [JsonProperty("validTo")] public DateTime ValidTo { get; set; }
 
-        [JsonProperty("licenceNumber")] public string LicenceNumber { get; set; } = "";
+        [JsonProperty("licenceNumber")] public string? LicenceNumber { get; set; } = "";
 
         [JsonProperty("issueNumber")] public string IssueNumber { get; set; } = "";
 

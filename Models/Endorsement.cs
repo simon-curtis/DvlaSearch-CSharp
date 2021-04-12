@@ -2,7 +2,7 @@
 
 namespace DvlaSearch_CSharp.Models
 {
-    public class Endorsement
+    public abstract class Endorsement
     {
         [JsonProperty("category")] public string Category { get; set; } = "";
     }
